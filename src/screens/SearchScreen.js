@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    paddingHorizontal: 20,
-    fontSize: 16,
+    paddingLeft: 10,
+    paddingRight: 20,
+    fontSize: 14,
     flex: 1
   },
 
