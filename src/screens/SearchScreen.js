@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    borderColor: 'black',
-    borderWidth: 1,
     paddingHorizontal: 20,
     fontSize: 16,
     flex: 1
