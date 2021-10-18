@@ -1,10 +1,21 @@
 import React from 'react';
-import { Image, TextInput, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, Image, TextInput, View, Text, StyleSheet } from 'react-native';
+import ItemsSection from '../components/ItemsSection';
 
 const SearchScreen = () => {
 
+  const items = [{ id: 1, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 2, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 3, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 4, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 5, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 6, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 7, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 8, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
+  { id: 9, title: 'Fish city', starsCount: 20, reviewsCount: 30 }]
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
       <View style={styles.searchContainer}>
         <Image style={styles.searchIcon} source={require('../../assets/ic_search.png')} />
@@ -16,14 +27,20 @@ const SearchScreen = () => {
         />
       </View>
 
-    </View>
+      <View style={{ alignContent: 'space-between' }}>
+        <ItemsSection items={items} style={styles.section} headerName='Cost Effective'></ItemsSection>
+        <ItemsSection items={items} style={styles.section} headerName='Bit Pricer'></ItemsSection>
+        <ItemsSection items={items} style={styles.section} headerName='Big Spender!'></ItemsSection>
+      </View>
+
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
 
   container: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 
   searchContainer: {
@@ -43,9 +60,13 @@ const styles = StyleSheet.create({
   searchIcon: {
     marginTop: 5,
     marginLeft: 5,
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
   },
+
+  section: {
+    marginTop: 10
+  }
 });
 
 export default SearchScreen;
