@@ -61,9 +61,7 @@ const styles = StyleSheet.create({
 
   searchIcon: {
     marginTop: 5,
-    marginLeft: 5,
-    width: 25,
-    height: 25,
+    marginLeft: 5
   },
 
   section: {
