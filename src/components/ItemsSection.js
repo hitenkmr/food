@@ -10,7 +10,7 @@ const ItemsSection = ({ headerName, items }) => {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => index}
                 data={items}
                 renderItem={({ item }) => {
                     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, Image, TextInput, View, Text, StyleSheet } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 
@@ -6,15 +6,25 @@ import ItemsSection from '../components/ItemsSection';
 
 const SearchScreen = () => {
 
-  const items = [{ id: 1, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 2, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 3, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 4, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 5, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 6, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 7, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 8, title: 'Fish city', starsCount: 20, reviewsCount: 30 },
-  { id: 9, title: 'Fish city', starsCount: 20, reviewsCount: 30 }]
+  const [term, setTerm] = useState('')
+  console.log(term)
+
+  var commonItem = { title: 'Fish city', starsCount: 20, reviewsCount: 30 };
+
+  var sections = [{
+    name: 'Cost Effective',
+    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
+  },
+  {
+    name: 'Bit Pricer',
+    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
+  },
+  {
+    name: 'Big Spender!',
+    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
+  }];
+
+  var filteredSections = sections;
 
   return (
     <ScrollView style={styles.container}>
@@ -26,14 +36,18 @@ const SearchScreen = () => {
           style={styles.textInput}
           placeholder="Search"
           placeholderTextColor='rgb(182,180,181)'
-          onChangeText={(searchString) => { }}
+          value={term}
+          onChangeText={(searchText) => {
+            setTerm(searchText)
+          }}
+          onEndEditing={() => { console.log('submitted') }}
         />
       </View>
 
       <View style={{ alignContent: 'space-between' }}>
-        <ItemsSection items={items} style={styles.section} headerName='Cost Effective'></ItemsSection>
-        <ItemsSection items={items} style={styles.section} headerName='Bit Pricer'></ItemsSection>
-        <ItemsSection items={items} style={styles.section} headerName='Big Spender!'></ItemsSection>
+        <ItemsSection items={filteredSections[0].items} style={styles.section} headerName={filteredSections[0].name}></ItemsSection>
+        <ItemsSection items={filteredSections[1].items} style={styles.section} headerName={filteredSections[1].name}></ItemsSection>
+        <ItemsSection items={filteredSections[2].items} style={styles.section} headerName={filteredSections[2].name}></ItemsSection>
       </View>
 
     </ScrollView>
