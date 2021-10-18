@@ -1,5 +1,7 @@
 import React from 'react';
 import { ScrollView, Image, TextInput, View, Text, StyleSheet } from 'react-native';
+import { Feather } from "@expo/vector-icons";
+
 import ItemsSection from '../components/ItemsSection';
 
 const SearchScreen = () => {
@@ -18,7 +20,8 @@ const SearchScreen = () => {
     <ScrollView style={styles.container}>
 
       <View style={styles.searchContainer}>
-        <Image style={styles.searchIcon} source={require('../../assets/ic_search.png')} />
+        <Feather name='search' style={styles.searchIcon} size={25}/>
+
         <TextInput
           style={styles.textInput}
           placeholder="Search"
