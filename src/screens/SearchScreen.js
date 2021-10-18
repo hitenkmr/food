@@ -20,7 +20,7 @@ const SearchScreen = () => {
     <ScrollView style={styles.container}>
 
       <View style={styles.searchContainer}>
-        <Feather name='search' style={styles.searchIcon} size={25} />
+        <Feather name='search' style={styles.searchIcon} />
 
         <TextInput
           style={styles.textInput}
@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
   },
 
   searchIcon: {
-    marginTop: 5,
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize: 35,
+    alignSelf: 'center'
   },
 
   section: {
