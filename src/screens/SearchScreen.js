@@ -1,12 +1,32 @@
 
 import React, { useState } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Dimensions } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ItemsSection from '../components/ItemsSection';
+import yelp from "../api/yelp";
 
 const SearchScreen = () => {
 
   const [term, setTerm] = useState('');
+  const [results, setResults] = useState([]);
+  const [errorMessage, setErrormessage] = useState('');
+
+  const searchApi = async () => {
+    try {
+      const response = await yelp.get('/search', {
+        params: {
+          limit: 50,
+          term,
+          location: 'san jose'
+        }
+      });
+      setResults(response.data.businesses);
+    } catch (e) {
+      console.log(e)
+      setErrormessage('Error while fetching')
+    }
+  };
+
 
   var commonItem = { title: 'Fish city', starsCount: 20, reviewsCount: 30 };
 
@@ -26,23 +46,32 @@ const SearchScreen = () => {
   var filteredSections = sections;
 
   return (
-    <ScrollView style={styles.container}>
-      <SearchBar
-        term={term}
-        onTermChange={newTerm => setTerm(newTerm)}
-        onTermSubmit={() => console.log('term was submitted')}
-      />
-      <ItemsSection items={filteredSections[0].items} style={styles.section} headerName={filteredSections[0].name}></ItemsSection>
-      <ItemsSection items={filteredSections[1].items} style={styles.section} headerName={filteredSections[1].name}></ItemsSection>
-      <ItemsSection items={filteredSections[2].items} style={styles.section} headerName={filteredSections[2].name}></ItemsSection>
-    </ScrollView>
+    <View style={styles.errorContainer}>
+      {
+        (errorMessage == '') ?
+          <ScrollView style={styles.container} >
+            <SearchBar
+              term={term}
+              onTermChange={newTerm => setTerm(newTerm)}
+              onTermSubmit={searchApi}
+            />
+            <ItemsSection items={filteredSections[0].items} style={styles.section} headerName={filteredSections[0].name}></ItemsSection>
+            <ItemsSection items={filteredSections[1].items} style={styles.section} headerName={filteredSections[1].name}></ItemsSection>
+            <ItemsSection items={filteredSections[2].items} style={styles.section} headerName={filteredSections[2].name}></ItemsSection>
+          </ScrollView>
+          : <Text> {errorMessage} </Text>
+      }
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
 
-  container: {
+  errorContainer: {
     backgroundColor: 'white',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   searchContainer: {
