@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ItemsSection from '../components/ItemsSection';
 
@@ -26,7 +26,7 @@ const SearchScreen = () => {
   var filteredSections = sections;
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
       <SearchBar
         term={term}
         onTermChange={newTerm => setTerm(newTerm)}
@@ -35,7 +35,7 @@ const SearchScreen = () => {
       <ItemsSection items={filteredSections[0].items} style={styles.section} headerName={filteredSections[0].name}></ItemsSection>
       <ItemsSection items={filteredSections[1].items} style={styles.section} headerName={filteredSections[1].name}></ItemsSection>
       <ItemsSection items={filteredSections[2].items} style={styles.section} headerName={filteredSections[2].name}></ItemsSection>
-    </View>
+    </ScrollView>
   );
 };
 
