@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 import ItemsSection from '../components/ItemsSection';
 import useSearchResults from '../hooks/useSearchResults';
 
-const SearchScreen = (navigation) => {
+const SearchScreen = () => {
 
   const [term, setTerm] = useState('');
   const [loading, results, errorMessage, searchApi] = useSearchResults();
@@ -28,13 +28,13 @@ const SearchScreen = (navigation) => {
           <Text style={{ textAlign: 'center', flex: 1 }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
-          <ItemsSection navigation={navigation} items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
           <View style={styles.seperator}></View>
 
-          <ItemsSection navigation={navigation} items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
           <View style={styles.seperator}></View>
 
-          <ItemsSection navigation={navigation} items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
           <View style={styles.seperator}></View>
 
         </ScrollView>

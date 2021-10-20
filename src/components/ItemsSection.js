@@ -2,11 +2,12 @@ import React from 'react';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Item from './Item';
+import { withNavigation } from 'react-navigation';
 
 const ItemsSection = ({ headerName, items, navigation }) => {
 
     function actionOnRow(item) {
-        navigation.navigation.navigate('ItemsDetail');
+        navigation.navigate('ItemsDetail');
     }
 
     return (
@@ -51,4 +52,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ItemsSection;
+export default withNavigation(ItemsSection);
