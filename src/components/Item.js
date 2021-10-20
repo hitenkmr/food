@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
 
     image: {
         height: 120,
+        borderRadius:5
     },
 
     title: {
