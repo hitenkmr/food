@@ -14,7 +14,7 @@ const ItemsSection = ({ headerName, items }) => {
                 }
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => item.id}
                 data={items}
                 renderItem={({ item }) => {
                     return (
