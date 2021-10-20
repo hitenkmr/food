@@ -30,7 +30,7 @@ const SearchScreen = () => {
       />
       {
         loading ? <ActivityIndicator animating={true} size={30} /> : errorMessage ? <View style={styles.errorContainer}>
-          <Text style={{ textAlign: 'center', flex: 1, backgroundColor: 'red' }}> {errorMessage} </Text>
+          <Text style={{ textAlign: 'center', flex: 1 }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
           <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
