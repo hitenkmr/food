@@ -29,13 +29,10 @@ const SearchScreen = () => {
         </View> : <ScrollView style={styles.scrollView} >
 
           <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
-          <View style={styles.seperator}></View>
 
           <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
-          <View style={styles.seperator}></View>
 
           <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
-          <View style={styles.seperator}></View>
 
         </ScrollView>
       }
@@ -85,12 +82,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white'
-  },
-
-  seperator: {
-    backgroundColor: 'lightgray',
-    height: 1,
-    marginTop: 15
   }
 });
 

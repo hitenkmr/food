@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 const ItemsSection = ({ headerName, items, navigation }) => {
 
     function actionOnRow(item) {
-        navigation.navigate('ItemsDetail', {id: item.id});
+        navigation.navigate('ItemsDetail', { id: item.id });
     }
 
     if (!items.length) {
@@ -38,6 +38,7 @@ const ItemsSection = ({ headerName, items, navigation }) => {
                     );
                 }}
             />
+            <View style={styles.seperator}></View>
         </View>
 
     );
@@ -53,7 +54,13 @@ const styles = StyleSheet.create({
         padding: 20,
         fontSize: 25,
         fontWeight: 'bold'
-    }
+    },
+
+    seperator: {
+        backgroundColor: 'lightgray',
+        height: 1,
+        marginTop: 15
+      }
 });
 
 export default withNavigation(ItemsSection);
