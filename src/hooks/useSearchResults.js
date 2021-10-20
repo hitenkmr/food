@@ -4,11 +4,11 @@ import yelp from "../api/yelp";
 export default () => {
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const [searchApiCalling, setSearchApiCalling] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const searchApi = async searchTerm => {
         console.log('Hi there!');
-        setSearchApiCalling(true)
+        setLoading(true)
         try {
             const response = await yelp.get('/search', {
                 params: {
@@ -21,7 +21,7 @@ export default () => {
             setSearchApiCalling(false)
         } catch (err) {
             setErrorMessage('Something went wrong');
-            setSearchApiCalling(false)
+            setLoading(false)
         }
     };
 
