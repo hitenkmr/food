@@ -232,13 +232,14 @@ export default () => {
             });
             setErrorMessage(null)
             setLoading(false)
-            // setResults(response.data.businesses)
-            setResults(dummyResults.businesses)
+            console.log(response)
+            setResults(response.data.businesses)
+            // setResults(dummyResults.businesses)
         } catch (err) {
             toJSON: () => object;
             console.log(err.toJSON().message)
-            // setErrorMessage(err.toJSON().message)
-            setResults(dummyResults.businesses)
+            setErrorMessage(err.toJSON().message)
+            // setResults(dummyResults.businesses)
             setLoading(false)
         }
     };
