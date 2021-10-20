@@ -8,6 +8,10 @@ const ItemsSection = ({ headerName, items }) => {
         <View>
             <Text style={styles.header}>{headerName}</Text>
             <FlatList
+                contentContainerStyle={{ paddingHorizontal:20 }}
+                ItemSeparatorComponent={
+                    () => <View style={{ width: 16, backgroundColor: '#F0EEEE' }} />
+                }
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item, index) => index}
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
 
     item: {
         width: '80%',
-        backgroundColor:'white'
+        backgroundColor: 'white'
     },
 
     header: {

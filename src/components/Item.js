@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        marginLeft: 20,
         height: 120,
     },
 
@@ -38,13 +37,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginTop: 10,
-        marginLeft: 20
     },
 
     starReview: {
         flexDirection: 'row',
         marginTop: 5,
-        marginLeft: 20
     },
 
     starText: {
