@@ -22,7 +22,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={{flex:1, backgroundColor:'white'}}>
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
       <SearchBar
         term={term}
         onTermChange={setTerm}
@@ -30,12 +30,18 @@ const SearchScreen = () => {
       />
       {
         loading ? <ActivityIndicator animating={true} size={30} /> : errorMessage ? <View style={styles.errorContainer}>
-          <Text style={{ textAlign: 'center', flex:1, backgroundColor:'red' }}> {errorMessage} </Text>
+          <Text style={{ textAlign: 'center', flex: 1, backgroundColor: 'red' }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
           <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
+          <View style={styles.seperator}></View>
+
           <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
+          <View style={styles.seperator}></View>
+
           <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
+          <View style={styles.seperator}></View>
+
         </ScrollView>
       }
     </View>
@@ -80,10 +86,16 @@ const styles = StyleSheet.create({
   },
 
   errorContainer: {
-    height:'100%',
+    height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor:'white'
+    backgroundColor: 'white'
+  },
+
+  seperator: {
+    backgroundColor: 'lightgray',
+    height: 1,
+    marginTop: 15
   }
 });
 
