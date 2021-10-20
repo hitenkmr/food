@@ -10,7 +10,7 @@ const ItemsSection = ({ headerName, items }) => {
             <FlatList
                 contentContainerStyle={{ paddingHorizontal:20 }}
                 ItemSeparatorComponent={
-                    () => <View style={{ width: 16, backgroundColor: '#F0EEEE' }} />
+                    () => <View style={{ width: 16, backgroundColor: 'white' }} />
                 }
                 horizontal
                 showsHorizontalScrollIndicator={false}
