@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 const ItemsSection = ({ headerName, items, navigation }) => {
 
     function actionOnRow(item) {
-        navigation.navigate('ItemsDetail');
+        navigation.navigate('ItemsDetail', {id: item.id});
     }
 
     return (
