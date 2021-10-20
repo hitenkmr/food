@@ -34,7 +34,6 @@ const ItemsSection = ({ headerName, items }) => {
 const styles = StyleSheet.create({
 
     item: {
-        width: '80%',
         backgroundColor: 'white'
     },
 
