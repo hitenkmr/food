@@ -10,6 +10,10 @@ const ItemsSection = ({ headerName, items, navigation }) => {
         navigation.navigate('ItemsDetail', {id: item.id});
     }
 
+    if (!items.length) {
+        return null
+    }
+
     return (
         <View>
             <Text style={styles.header}>{headerName}</Text>
