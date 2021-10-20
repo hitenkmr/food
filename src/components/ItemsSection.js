@@ -14,7 +14,7 @@ const ItemsSection = ({ headerName, items }) => {
                 data={items}
                 renderItem={({ item }) => {
                     return (
-                        <Item imageUrl={item.image_url}
+                        <Item style={styles.item} imageUrl={item.image_url}
                             title={item.name}
                             starsCount={item.rating}
                             reviewsCount={item.review_count}>
@@ -30,7 +30,8 @@ const ItemsSection = ({ headerName, items }) => {
 const styles = StyleSheet.create({
 
     item: {
-        width: '80%'
+        width: '80%',
+        backgroundColor:'white'
     },
 
     header: {

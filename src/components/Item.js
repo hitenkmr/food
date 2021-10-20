@@ -25,13 +25,12 @@ const styles = StyleSheet.create({
 
     container: {
         width: 250,
-        backgroundColor:'white'
+        backgroundColor:'green',
     },
 
     image: {
         marginLeft: 20,
         height: 120,
-        width:'100%'
     },
 
     title: {
