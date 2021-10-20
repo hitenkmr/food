@@ -1,14 +1,19 @@
 import React from 'react';
-import { FlatList, Image, TextInput, View, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Item from './Item';
 
-const ItemsSection = ({ headerName, items }) => {
+const ItemsSection = ({ headerName, items, navigation }) => {
+
+    function actionOnRow(item) {
+        navigation.navigation.navigate('ItemsDetail');
+    }
 
     return (
         <View>
             <Text style={styles.header}>{headerName}</Text>
             <FlatList
-                contentContainerStyle={{ paddingHorizontal:20 }}
+                contentContainerStyle={{ paddingHorizontal: 20 }}
                 ItemSeparatorComponent={
                     () => <View style={{ width: 16, backgroundColor: 'white' }} />
                 }
@@ -18,11 +23,13 @@ const ItemsSection = ({ headerName, items }) => {
                 data={items}
                 renderItem={({ item }) => {
                     return (
-                        <Item style={styles.item} imageUrl={item.image_url}
-                            title={item.name}
-                            starsCount={item.rating}
-                            reviewsCount={item.review_count}>
-                        </Item>
+                        <TouchableOpacity onPress={() => actionOnRow(item)}>
+                            <Item style={styles.item} imageUrl={item.image_url}
+                                title={item.name}
+                                starsCount={item.rating}
+                                reviewsCount={item.review_count}>
+                            </Item>
+                        </TouchableOpacity>
                     );
                 }}
             />

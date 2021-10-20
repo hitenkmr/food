@@ -1,19 +1,14 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ItemsSection from '../components/ItemsSection';
-import yelp from "../api/yelp";
 import useSearchResults from '../hooks/useSearchResults';
 
-const SearchScreen = () => {
+const SearchScreen = (navigation) => {
 
   const [term, setTerm] = useState('');
   const [loading, results, errorMessage, searchApi] = useSearchResults();
-
-  console.log(loading)
-  console.log(loading, errorMessage)
-  console.log(results)
 
   const filterResultsByPrice = (price) => {
     return results.filter(result => {
@@ -33,13 +28,13 @@ const SearchScreen = () => {
           <Text style={{ textAlign: 'center', flex: 1 }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
-          <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
+          <ItemsSection navigation={navigation} items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
           <View style={styles.seperator}></View>
 
-          <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
+          <ItemsSection navigation={navigation} items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
           <View style={styles.seperator}></View>
 
-          <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
+          <ItemsSection navigation={navigation} items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
           <View style={styles.seperator}></View>
 
         </ScrollView>
