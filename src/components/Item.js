@@ -2,12 +2,12 @@ import React from 'react';
 import { Image, TextInput, View, Text, StyleSheet } from 'react-native';
 
 
-const Item = ({ imageSource, title, starsCount, reviewsCount }) => {
+const Item = ({ imageUrl, title, starsCount, reviewsCount }) => {
 
     return (
 
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../assets/beach.jpg')} />
+            <Image style={styles.image} source={{uri:imageUrl}} />
 
             <Text style={styles.title}>{title}</Text>
 

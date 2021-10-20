@@ -9,26 +9,17 @@ import useSearchResults from '../hooks/useSearchResults';
 const SearchScreen = () => {
 
   const [term, setTerm] = useState('');
-
   const [loading, results, errorMessage, searchApi] = useSearchResults();
-
-  var commonItem = { title: 'Fish city', starsCount: 20, reviewsCount: 30 };
-
-  var sections = [{
-    name: 'Cost Effective',
-    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
-  },
-  {
-    name: 'Bit Pricer',
-    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
-  },
-  {
-    name: 'Big Spender!',
-    items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
-  }];
 
   console.log(loading)
   console.log(loading, errorMessage)
+  console.log(results)
+
+  const filterResultsByPrice = (price) => {
+    return results.filter(result => {
+      return result.price == price;
+    });
+  };
 
   return (
     <View style={{flex:1, backgroundColor:'white'}}>
@@ -42,9 +33,9 @@ const SearchScreen = () => {
           <Text style={{ textAlign: 'center', flex:1, backgroundColor:'red' }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
-          <ItemsSection items={sections[0].items} style={styles.section} headerName={sections[0].name}></ItemsSection>
-          <ItemsSection items={sections[1].items} style={styles.section} headerName={sections[1].name}></ItemsSection>
-          <ItemsSection items={sections[2].items} style={styles.section} headerName={sections[2].name}></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='CostEffective'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
         </ScrollView>
       }
     </View>

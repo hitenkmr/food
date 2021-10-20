@@ -14,9 +14,10 @@ const ItemsSection = ({ headerName, items }) => {
                 data={items}
                 renderItem={({ item }) => {
                     return (
-                        <Item title={item.title}
-                            starsCount={item.starsCount}
-                            reviewsCount={item.reviewsCount}>
+                        <Item imageUrl={item.image_url}
+                            title={item.name}
+                            starsCount={item.rating}
+                            reviewsCount={item.review_count}>
                         </Item>
                     );
                 }}
