@@ -33,7 +33,7 @@ const SearchScreen = () => {
           <Text style={{ textAlign: 'center', flex:1, backgroundColor:'red' }}> {errorMessage} </Text>
         </View> : <ScrollView style={styles.scrollView} >
 
-          <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='CostEffective'></ItemsSection>
+          <ItemsSection items={filterResultsByPrice('$')} style={styles.section} headerName='Cost Effective'></ItemsSection>
           <ItemsSection items={filterResultsByPrice('$$')} style={styles.section} headerName='Bit Pricer'></ItemsSection>
           <ItemsSection items={filterResultsByPrice('$$$')} style={styles.section} headerName='Big Spender'></ItemsSection>
         </ScrollView>
