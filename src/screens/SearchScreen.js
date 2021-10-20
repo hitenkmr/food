@@ -1,35 +1,16 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ItemsSection from '../components/ItemsSection';
 import yelp from "../api/yelp";
+import useSearchResults from '../hooks/useSearchResults';
 
 const SearchScreen = () => {
 
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const [errorMessage, setErrormessage] = useState('');
-  const [searchApiCalling, setSearchApiCalling] = useState(false);
 
-  const searchApi = async (searchTerm) => {
-    setSearchApiCalling(true)
-    try {
-      const response = await yelp.get('/search', {
-        params: {
-          limit: 50,
-          searchTerm,
-          location: 'san jose'
-        }
-      });
-      setResults(response.data.businesses);
-      setSearchApiCalling(false)
-    } catch (e) {
-      console.log(e)
-      setErrormessage('Error while fetching')
-      setSearchApiCalling(false)
-    }
-  };
+  const [loading, results, errorMessage, searchApi] = useSearchResults();
 
   var commonItem = { title: 'Fish city', starsCount: 20, reviewsCount: 30 };
 
@@ -46,25 +27,25 @@ const SearchScreen = () => {
     items: [commonItem, commonItem, commonItem, commonItem, commonItem, commonItem]
   }];
 
+  console.log(loading)
+  console.log(loading, errorMessage)
+
   return (
-    <View style={styles.container}>
+    <View style={{flex:1, backgroundColor:'white'}}>
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => searchApi(term)}
+      />
       {
-        searchApiCalling ? <ActivityIndicator animating={true} size={30} />
+        loading ? <ActivityIndicator animating={true} size={30} /> : errorMessage ? <View style={styles.errorContainer}>
+          <Text style={{ textAlign: 'center', flex:1, backgroundColor:'red' }}> {errorMessage} </Text>
+        </View> : <ScrollView style={styles.scrollView} >
 
-          : (errorMessage == '') 
-          
-          ? <ScrollView style={styles.scrollView} >
-                <SearchBar
-                  term={term}
-                  onTermChange={newTerm => setTerm(newTerm)}
-                  onTermSubmit={ () => searchApi(term)}
-                />
-                <ItemsSection items={sections[0].items} style={styles.section} headerName={sections[0].name}></ItemsSection>
-                <ItemsSection items={sections[1].items} style={styles.section} headerName={sections[1].name}></ItemsSection>
-                <ItemsSection items={sections[2].items} style={styles.section} headerName={sections[2].name}></ItemsSection>
-              </ScrollView>
-
-              : <Text> {errorMessage} </Text>
+          <ItemsSection items={sections[0].items} style={styles.section} headerName={sections[0].name}></ItemsSection>
+          <ItemsSection items={sections[1].items} style={styles.section} headerName={sections[1].name}></ItemsSection>
+          <ItemsSection items={sections[2].items} style={styles.section} headerName={sections[2].name}></ItemsSection>
+        </ScrollView>
       }
     </View>
   );
@@ -105,6 +86,13 @@ const styles = StyleSheet.create({
 
   section: {
     marginTop: 10
+  },
+
+  errorContainer: {
+    height:'100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor:'white'
   }
 });
 

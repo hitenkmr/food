@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import yelp from "../api/yelp";
 
 export default () => {
+
+    const [loading, setLoading] = useState(false);
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const [loading, setLoading] = useState(false);
 
-    const searchApi = async searchTerm => {
+    const searchApi = async (searchTerm) => {
+        if (searchTerm == '') { return };
         console.log('Hi there!');
         setLoading(true)
         try {
@@ -17,20 +19,19 @@ export default () => {
                     location: 'san jose'
                 }
             });
-            setResults(response.data.businesses);
-            setSearchApiCalling(false)
+            setErrorMessage(null)
+            setLoading(false)
+            setResults(response.data.businesses)
         } catch (err) {
-            setErrorMessage('Something went wrong');
+  toJSON: () => object;
+            console.log(err.toJSON().message)
+            setErrorMessage(err.toJSON().message)
             setLoading(false)
         }
     };
-
-    // Call searchApi when component
-    // is first rendered.  BAD CODE!
-    // searchApi('pasta');
     useEffect(() => {
-        searchApi('pasta');
+        searchApi('');
     }, []);
 
-    return [searchApi, results, errorMessage, searchApiCalling];
+    return [loading, results, errorMessage, searchApi];
 };
