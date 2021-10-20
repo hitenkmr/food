@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TextInput, View, Text, StyleSheet } from 'react-native';
+import { Image, View, Text, StyleSheet } from 'react-native';
 
 
 const Item = ({ imageUrl, title, starsCount, reviewsCount }) => {
